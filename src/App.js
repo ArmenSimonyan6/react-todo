@@ -13,12 +13,15 @@ function App() {
   const [newPost, setNewPost] = useState("")
   const [loader, setLoder] = useState(false)
   const [searchPosts, setSearchPosts] = useState("");
+  const [disabled, setDisabled] = useState(false)
+  
 
 
   const addNewPost = (e) => {
     e.preventDefault()
 
     if (!newPost.title || !newPost.title.trim()) return
+
 
     setPosts((prevPosts) => [
       {

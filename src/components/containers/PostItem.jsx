@@ -7,25 +7,26 @@ import PostChecked from './PostChecked'
 
 const PostItem = (props) => {
 
-    const [toggle, setToggle] = useState(null)
     const [title, setTitle] = useState("")
     const [originalTitle, setOriginalTitle] = useState("")
     const [modified, setModified] = useState(false)
 
 
     const editPosts = (id, title) => {
-        setToggle(id)
-        setTitle(title)
-        setOriginalTitle(title)
-        setModified(false)
-    }
+        if (props.toggle !== id) {
+            props.setToggle(id); // Открываем новый edit, закрывая предыдущий
+            setTitle(title);
+            setOriginalTitle(title);
+            setModified(false);
+        }
+    };
 
     const savePosts = (id) => {
         if (!title.trim()) return
 
         setModified(true)
         props.post.title = title
-        setToggle(null)
+        props.setToggle(null)
     }
 
     const handleTitleChange = (e) => {
@@ -45,14 +46,17 @@ const PostItem = (props) => {
     return (
         <div className='posts'>
             {
-                toggle === props.post.id ?
+                props.toggle === props.post.id ?
                     <form onSubmit={handleSubmit}>
                         <Input value={title} onChange={handleTitleChange} />
                         {
                             modified ?
-                                <Button onClick={() => savePosts(props.post.id)} style={{ borderBottomRightRadius: "30px", borderTopRightRadius: "30px" }}>Save</Button>
+                                <Button
+                                    onClick={() => savePosts(props.post.id)}
+                                    style={{ borderBottomRightRadius: "30px", borderTopRightRadius: "30px" }}>
+                                    Save</Button>
                                 :
-                                <Button onClick={() => setModified(null)} style={{ borderBottomRightRadius: "30px", borderTopRightRadius: "30px" }}>Back</Button>
+                                <Button onClick={() => props.setToggle(null)} style={{ borderBottomRightRadius: "30px", borderTopRightRadius: "30px" }}>Back</Button>
                         }
                     </form>
                     :
