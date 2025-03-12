@@ -1,0 +1,30 @@
+@media (max-width: 1020px) {
+    
+}
+
+@media (max-width: 720px) {
+    .App .todo {
+        margin: 25px !important;
+    }
+    .icons {
+        width: 25px !important;
+        height: 20px !important;
+    }
+     .posts button {
+        padding: 0;
+     }
+}
+
+@media (max-width: 480px) {
+    .App .todo {
+        margin: 10px !important;
+    }
+    .icons {
+        width: 25px !important;
+        height: 20px !important;
+    }
+     .posts button {
+        padding: 0;
+     }
+}
+

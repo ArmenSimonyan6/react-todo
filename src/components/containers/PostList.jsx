@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PostItem from './PostItem'
 
-const PostList = ({posts, deletePost, toggleDone}) => {
+const PostList = ({posts, deletePost, toggleDone, setPosts}) => {
       const [toggle, setToggle] = useState(null)
   
 
@@ -9,10 +9,12 @@ const PostList = ({posts, deletePost, toggleDone}) => {
     <div>
         {
           posts.length === 0? 
-          <h1 style={{textAlign: "center", marginTop: "30px"}}>No Post Found</h1> :
+          <h1 style={{textAlign: "center", marginTop: "30px"}}>No Post Found</h1>
+           :
             posts.map((post, idx) => <PostItem 
             key={post.id} 
             post={post} 
+            setPosts={setPosts}
             toggle={toggle}
             toggleDone={toggleDone} 
             deletePost={deletePost} 
