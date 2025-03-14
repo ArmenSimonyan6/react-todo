@@ -40,11 +40,11 @@ a {
 
 .page {
   padding: 10px;
-  border: 1px solid #f8b13b;
+  border: 2px solid #f8b13b;
   cursor: pointer;
 }
 
 .page__current {
-  border: 2px solid #673b14;
+  border: 3px solid #673b14;
   font-weight: bold;
 }

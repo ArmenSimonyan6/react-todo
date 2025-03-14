@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import checkedIcon from '../../assets/icons/check.png'
-import notCheckedIcon from '../../assets/icons/dry-clean.png'
+import checkedIcon from '../assets/icons/check.png'
+import notCheckedIcon from '../assets/icons/dry-clean.png'
 
 const PostChecked = ({ done }) => {
     return (

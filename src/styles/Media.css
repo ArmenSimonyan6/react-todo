@@ -6,13 +6,6 @@
     .App .todo {
         margin: 25px !important;
     }
-    .icons {
-        width: 25px !important;
-        height: 20px !important;
-    }
-     .posts button {
-        padding: 0;
-     }
 }
 
 @media (max-width: 480px) {

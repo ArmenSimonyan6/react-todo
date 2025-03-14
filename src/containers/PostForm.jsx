@@ -1,6 +1,6 @@
 import React from 'react'
-import { Input } from '../shared/Input/Input'
-import { Button } from '../shared/Button/Button'
+import { Input } from '../components/shared/Input/Input'
+import { Button } from '../components/shared/Button/Button'
 
 const PostForm = ({ addNewPost, newPost, setNewPost }) => {
 

@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import './styles/Global.css'
 import './styles/Media.css'
-import PostForm from './components/containers/PostForm';
-import PostList from './components/containers/PostList';
+import PostForm from './containers/PostForm';
+import PostList from './containers/PostList';
 import Api from './services/Api';
 import Loader from './components/shared/Loader/Loader';
 import { Input } from './components/shared/Input/Input';
-import { getPageCount, getPagesArray } from './components/containers/Pagination';
+import { getPageCount, getPagesArray } from './containers/Pagination';
 import { BrowserRouter, Link } from 'react-router-dom';
 
 function App() {
@@ -22,15 +22,14 @@ function App() {
 
   async function fetchPosts() {
     setLoder(true)
-    const response = await Api.getPosts(limit, page)
 
+    const response = await Api.getPosts(limit, page)
     setPosts([
       ...response.data
     ])
-
     const totalCount = response.headers['x-total-count']
     setTotalPages(getPageCount(totalCount, limit))
-
+    
     setLoder(false)
   }
 
@@ -38,17 +37,14 @@ function App() {
     fetchPosts()
   }, [page])
 
-  let pagesArray = getPagesArray(totalPages)
+  const pagesArray = getPagesArray(totalPages)
 
   const addNewPost = async (e) => {
     e.preventDefault()
 
     if (!newPost.title || !newPost.title.trim()) return
     try {
-
       const resp = await Api.addPost(newPost)
-      console.log("66", resp);
-
       setPosts((prevPosts) => [
         {
           id: new Date().getTime().toString(),
@@ -64,7 +60,6 @@ function App() {
       })
     } catch (error) {
       console.log(error);
-
     }
 
   }
@@ -78,13 +73,12 @@ function App() {
     try {
       const updatedPost = await Api.updatePost(todo.id, { completed: !todo.completed });
       console.log(updatedPost);
-
       if (updatedPost) {
         setPosts((prevPosts) =>
           prevPosts.map((t) =>
             t.id === todo.id ? { ...t, completed: updatedPost.completed } : t
           )
-        );
+        )
       }
     } catch (error) {
       console.error("Error", error);
